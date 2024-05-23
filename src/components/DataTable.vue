@@ -1,7 +1,7 @@
 <template>
-    <v-data-table :items="props.posts" :headers="headers" :loading="loading" show-select>
+    <v-data-table :items="props.posts" :headers="headers" :loading="loading" :search="search" show-select>
         <template v-slot:top>
-            <SearchTableBar></SearchTableBar>
+            <SearchTableBar :search="search" @update:search="updateSearchQuery"></SearchTableBar>
         </template>
         <template v-slot:item.title="{ item }">
             <a :href="item.url">{{ item.title }}</a>
@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 const props = defineProps({
     headers: {
         type: Array,
@@ -29,6 +30,12 @@ const props = defineProps({
         required: true
     }
 })
+//Define reference for search query
+const search = ref<string>('');
+// Function to update search value
+const updateSearchQuery = (query) => {
+    search.value = query;
+}
 </script>
 <style>
 th {

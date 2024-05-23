@@ -12,7 +12,7 @@ export const usePostStore = defineStore('postStore', {
       { title: 'Created', key: 'created_utc' },
     ],
     // Define the post array to store Reddit posts
-    post: [] as RedditPost[],
+    posts: [] as RedditPost[],
     // Define an error variable to store any erro messages
     error: null as string | null,
   }),
