@@ -1,5 +1,5 @@
 <template>
-    <v-data-table :items="props.posts" :headers="headers" show-select>
+    <v-data-table :items="props.posts" :headers="headers" :loading="loading" show-select>
         <template v-slot:top>
             <SearchTableBar></SearchTableBar>
         </template>
@@ -22,6 +22,10 @@ const props = defineProps({
     },
     posts: {
         type: Array,
+        required: true
+    },
+    loading: {
+        type: Boolean,
         required: true
     }
 })

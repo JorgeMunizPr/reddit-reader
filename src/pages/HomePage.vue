@@ -1,25 +1,28 @@
 <template>
     <v-card class="mx-8 mb-2">
-        <DataTable :headers="postStore.headers" :posts="postStore.posts"></DataTable>
+        <DataTable :headers="postStore.headers" :posts="postStore.posts" :loading="loadingPost"></DataTable>
     </v-card>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { usePostStore } from '../store/postStore';
 //Initialize store
 const postStore = usePostStore();
-
+// Define reactive references fron loading states
+const loadingPost = ref<Boolean>(false);
 onMounted(() => {
     loadPosts()
 })
 // Function to load post from the store
 const loadPosts = async () => {
+    loadingPost.value = true;
     try {
         await postStore.loadPosts('computerscience');
     } catch (error) {
 
     }
+    loadingPost.value = false;
 }
 
 </script>
