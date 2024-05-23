@@ -5,5 +5,10 @@
         <!-- MAINHEADER -->
         <MainHeader />
         <!-- PAGES -->
+        <HomePage></HomePage>
     </v-main>
 </template>
+
+<script setup lang="ts">
+import HomePage from '../pages/HomePage.vue'
+</script>

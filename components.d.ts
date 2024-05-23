@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DataTable: typeof import('./src/components/DataTable.vue')['default']
     MainHeader: typeof import('./src/components/layout/MainHeader.vue')['default']
     NavBar: typeof import('./src/components/layout/NavBar.vue')['default']
   }
