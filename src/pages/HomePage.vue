@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-8 mb-2">
-        <DataTable></DataTable>
+        <DataTable :headers="postStore.headers" :posts="postStore.posts"></DataTable>
     </v-card>
 </template>
 
@@ -13,7 +13,7 @@ const postStore = usePostStore();
 onMounted(() => {
     loadPosts()
 })
-
+// Function to load post from the store
 const loadPosts = async () => {
     try {
         await postStore.loadPosts('computerscience');
