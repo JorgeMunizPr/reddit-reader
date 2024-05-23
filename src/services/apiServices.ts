@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { formatDate } from './formatDate';
 
 //TypeScript interfaces for the Reddit API response
 export interface RedditPost {
@@ -22,7 +23,7 @@ export const fetchPosts = async (subreddit: string): Promise<RedditPost[]> => {
       num_comments: child.data.num_comments,
       ups: child.data.ups,
       url: child.data.url,
-      created_utc: child.data.created_utc,
+      created_utc: formatDate(child.data.created_utc),
     }));
     return posts;
   } catch (error) {
