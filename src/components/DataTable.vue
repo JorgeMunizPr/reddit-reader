@@ -7,7 +7,7 @@
             <a :href="item.url">{{ item.title }}</a>
         </template>
         <template v-slot:item.author="{ item }">
-            <v-chip variant="flat">
+            <v-chip variant="flat" @click="emit('read-author', item)">
                 {{ item.author }}
             </v-chip>
         </template>
@@ -30,6 +30,7 @@ const props = defineProps({
         required: true
     }
 })
+const emit = defineEmits(['read-author']);
 //Define reference for search query
 const search = ref<string>('');
 // Function to update search value
