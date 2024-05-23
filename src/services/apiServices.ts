@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formatDate } from './formatDate';
+import { formatDate } from '../utils/formatDate';
 
 //TypeScript interfaces for the Reddit API response
 export interface RedditPost {
