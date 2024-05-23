@@ -1,5 +1,8 @@
 <template>
-    <v-data-table :items="items" :headers="headers">
+    <v-data-table :items="items" :headers="headers" show-select>
+        <template v-slot:top>
+            <SearchTableBar></SearchTableBar>
+        </template>
         <template v-slot:item.title="{ item }">
             <a :href="item.url">{{ item.title }}</a>
         </template>
