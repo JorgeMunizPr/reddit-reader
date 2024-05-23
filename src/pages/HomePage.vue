@@ -3,7 +3,8 @@
         <DataTable :headers="postStore.headers" :posts="postStore.posts" :loading="loadingPost"
             @read-author="readAuthor"></DataTable>
     </v-card>
-    <Dialog :showDialog="showDialog" :dialogTitle="dialogTitle" @close-dialog="showDialog = false">
+    <Dialog :showDialog="showDialog" :dialogTitle="dialogTitle" :loading="loadingDialog"
+        @close-dialog="showDialog = false">
         <template v-slot:body>
             <v-list>
                 <h3 class="mb-4">Other posts from the author:</h3>
@@ -41,6 +42,7 @@ const showSnack = ref<Boolean>(false);
 const messageSnack = ref<String | null>('')
 const showDialog = ref<Boolean>(false);
 const dialogTitle = ref<string | null>('');
+const loadingDialog = ref<Boolean>(false);
 // Lyfecycle hook to load post when mounted
 onMounted(() => {
     loadPosts()
@@ -60,16 +62,17 @@ const loadPosts = async () => {
 
 // Function to load user data for dialog
 const readAuthor = async (item: any) => {
-
+    showDialog.value = true;
+    loadingDialog.value = true;
     try {
         await userStore.loadUser(item.author);
-        showDialog.value = true;
         dialogTitle.value = item.author;
     } catch (error) {
         showDialog.value = false;
         messageSnack.value = userStore.error ? userStore.error : '';
         showSnack.value = true;
     }
+    loadingDialog.value = false;
 }
 
 </script>
