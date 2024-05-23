@@ -6,15 +6,17 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { fetchPosts } from '../services/apiServices';
+import { usePostStore } from '../store/postStore';
+//Initialize store
+const postStore = usePostStore();
+
 onMounted(() => {
     loadPosts()
 })
 
 const loadPosts = async () => {
     try {
-        const posts = await fetchPosts('computerscience');
-        console.log(posts);
+        await postStore.loadPosts('computerscience');
     } catch (error) {
 
     }
